@@ -2199,7 +2199,7 @@ function Library:CreateWindow(WindowTitle)
             while task.wait() do -- garbage fix for something i don't want to read into (tab doesnt properly color when selected default
                 if TabButton.BackgroundColor3 == Library.BackgroundColor then
                     TabButton.BackgroundColor3 = Library.MainColor
-                    warn("fixed color
+                    warn("fixed color")
                     break
                 end
             end
