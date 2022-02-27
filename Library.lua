@@ -435,7 +435,7 @@ local Instance_new = ((get_hidden_gui or gethui) and function(...)
 	local x = {Instance.new(...)}
 	if x[1] then
 		library.objects[1 + #library.objects] = x[1]
-		x[1].Parent = hiddenUI
+		x[1].Parent = hiddenUI()
 	end
 	return unpack(x)
 end) or (syn and syn.protect_gui and function(...)
