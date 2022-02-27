@@ -430,7 +430,15 @@ function library.unload()
 	warn("Unloaded")
 end
 library.Unload = library.unload
-local Instance_new = (syn and syn.protect_gui and function(...)
+local Instance_new = ((get_hidden_gui or gethui) and function(...)
+	local hiddenUI = get_hidden_gui or gethui
+	local x = {Instance.new(...)}
+	if x[1] then
+		library.objects[1 + #library.objects] = x[1]
+		x[1].Parent = hiddenUI
+	end
+	return unpack(x)
+end) or (syn and syn.protect_gui and function(...)
 	local x = {Instance.new(...)}
 	if x[1] then
 		library.objects[1 + #library.objects] = x[1]
