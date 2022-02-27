@@ -2196,13 +2196,15 @@ function Library:CreateWindow(WindowTitle)
             TabButton.BackgroundColor3 = Library.MainColor;
             TabFrame.Visible = true;
             
-            while task.wait() do -- garbage fix for something i don't want to read into (tab doesnt properly color when selected default
-                if TabButton.BackgroundColor3 == Library.BackgroundColor then
-                    TabButton.BackgroundColor3 = Library.MainColor
-                    warn("fixed color")
-                    break
-                end
-            end
+            coroutine.resume(coroutine.create(function()
+                while task.wait() do -- garbage fix for something i don't want to read into (tab doesnt properly color when selected default
+                    if TabButton.BackgroundColor3 == Library.BackgroundColor then
+                        TabButton.BackgroundColor3 = Library.MainColor;
+                        warn("fixed color");
+                        break;
+                    end;
+                end;
+            end));
         end;
 
         function Tab:HideTab()
