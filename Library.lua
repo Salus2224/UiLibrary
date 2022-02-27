@@ -2287,7 +2287,7 @@ function Library:CreateWindow(WindowTitle)
             Groupbox:Resize();
 
             Tab.Groupboxes[Info.Name] = Groupbox;
-
+            
             return Groupbox;
         end;
 
@@ -2477,7 +2477,7 @@ function Library:CreateWindow(WindowTitle)
             end;
 
             Tab.Tabboxes[Info.Name or ''] = Tabbox;
-
+            
             return Tabbox;
         end;
 
@@ -2497,7 +2497,8 @@ function Library:CreateWindow(WindowTitle)
 
         -- This was the first tab added, so we show it by default.
         if #TabContainer:GetChildren() == 1 then
-            Tab:ShowTab();
+            warn("Showing first Tab: " .. tostring(Tab.Name))
+            Tab:ShowTab(); -- HERE IS THE END
         end;
 
         Window.Tabs[Name] = Tab;
