@@ -2195,6 +2195,16 @@ function Library:CreateWindow(WindowTitle)
             Blocker.BackgroundTransparency = 0;
             TabButton.BackgroundColor3 = Library.MainColor;
             TabFrame.Visible = true;
+            warn("Tab Made Visible")
+            TabButton.BackgroundColor3 = Library.MainColor
+            warn(Library.MainColor)
+            warn(TabButton.BackgroundColor3)
+            coroutine.resume(coroutine.create(function()
+                while true do
+                    warn(TabButton.BackgroundColor3)
+                    wait(1)
+                end
+            end))
         end;
 
         function Tab:HideTab()
