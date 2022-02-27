@@ -2199,14 +2199,14 @@ function Library:CreateWindow(WindowTitle)
             
             if first then
                 first = false;
-                coroutine.resume(coroutine.create(function()
-                    while task.wait() do -- garbage fix for something i don't want to read into (tab doesnt properly color when selected default
-                        if TabButton.BackgroundColor3 == Library.BackgroundColor then
-                            TabButton.BackgroundColor3 = Library.MainColor;
-                            break;
-                        end;
+                local con
+                con = game:GetService("RunService").RenderStepped:Connect(function() -- garbage fix for something i don't want to read into (tab doesnt properly color when selected default
+                    if TabButton.BackgroundColor3 == Library.BackgroundColor then
+                        TabButton.BackgroundColor3 = Library.MainColor;
+                        con:Disconnect();
+                        return;
                     end;
-                end));
+                end);
             end;
         end;
 
