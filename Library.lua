@@ -2195,14 +2195,20 @@ function Library:CreateWindow(WindowTitle)
             Blocker.BackgroundTransparency = 0;
             TabButton.BackgroundColor3 = Library.MainColor;
             TabFrame.Visible = true;
-            warn("Tab Made Visible")
+            
+            while task.wait() do -- garbage fix for something i don't want to read into (tab doesnt properly color when selected default
+                if TabButton.BackgroundColor3 == Library.BackgroundColor then
+                    TabButton.BackgroundColor3 = Library.MainColor
+                    warn("fixed color
+                    break
+                end
+            end
         end;
 
         function Tab:HideTab()
             Blocker.BackgroundTransparency = 1;
             TabButton.BackgroundColor3 = Library.BackgroundColor;
             TabFrame.Visible = false;
-            warn("Tab Made Invisible")
         end;
 
         function Tab:AddGroupbox(Info)
