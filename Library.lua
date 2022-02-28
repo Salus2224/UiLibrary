@@ -1091,7 +1091,9 @@ do
             TextColor3 = 'FontColor';
         });
         
+        local first = true
         function Textbox:OnFocusLost(Func)
+            if first then first = false; return; end;
             Textbox.FocusLost = Func;
             Func();
         end;
