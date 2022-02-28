@@ -1080,11 +1080,22 @@ do
             Textbox:SetValue(Box.Text);
             Library:AttemptSave();
         end);
+        
+        Box.FocusLost:Connect(function()
+            if Textbox.FocusLost then
+                Textbox.FocusLost();
+            end;
+        end);
 
         Library:AddToRegistry(Box, {
             TextColor3 = 'FontColor';
         });
-
+        
+        function Textbox:OnFocusLost(Func)
+            Textbox.FocusLost = Func;
+            Func();
+        end;
+                
         function Textbox:OnChanged(Func)
             Textbox.Changed = Func;
             Func();
