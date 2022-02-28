@@ -1081,7 +1081,9 @@ do
             Library:AttemptSave();
         end);
         
+        local first = true;
         Box.FocusLost:Connect(function()
+            if first then first = false; return; end;
             if Textbox.FocusLost then
                 Textbox.FocusLost();
             end;
@@ -1091,9 +1093,7 @@ do
             TextColor3 = 'FontColor';
         });
         
-        local first = true
         function Textbox:OnFocusLost(Func)
-            if first then first = false; return; end;
             Textbox.FocusLost = Func;
             Func();
         end;
