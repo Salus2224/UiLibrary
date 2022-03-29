@@ -481,7 +481,6 @@ do
 
         function ColorPicker:OnChanged(Func)
             ColorPicker.Changed = Func;
-            Func();
         end;
 
         function ColorPicker:Show()
@@ -1100,7 +1099,6 @@ do
                 
         function Textbox:OnChanged(Func)
             Textbox.Changed = Func;
-            Func();
         end;
 
         Groupbox:AddBlank(5);
@@ -1189,7 +1187,6 @@ do
 
         function Toggle:OnChanged(Func)
             Toggle.Changed = Func;
-            Func();
         end;
 
         function Toggle:SetValue(Bool)
@@ -1337,7 +1334,6 @@ do
 
         function Slider:OnChanged(Func)
             Slider.Changed = Func;
-            Func();
         end;
 
         local function Round(Value)
@@ -1708,7 +1704,6 @@ do
 
         function Dropdown:OnChanged(Func)
             Dropdown.Changed = Func;
-            Func();
         end;
 
         function Dropdown:SetValue(Val)
