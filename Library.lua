@@ -971,7 +971,7 @@ do
             Parent = ButtonInner;
         });
 
-        local ButtonLabel = Library:CreateLabel({
+        Button.ButtonLabel = Library:CreateLabel({
             Size = UDim2.new(1, 0, 1, 0);
             TextSize = 14;
             Text = Text;
