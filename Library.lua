@@ -83,11 +83,11 @@ function Library:Create(Class, Properties)
     return _Instance;
 end;
 
-function Library:CreateLabel(Properties, IsHud)
+function Library:CreateLabel(Properties, IsHud, Color)
     local _Instance = Library:Create('TextLabel', {
         BackgroundTransparency = 1;
         Font = Enum.Font.Code;
-        TextColor3 = Properties.FontColor or Library.FontColor;
+        TextColor3 = Color or Library.FontColor;
         TextSize = 16;
         TextStrokeTransparency = 0;
     });
@@ -905,14 +905,13 @@ do
         local Container = Groupbox.Container;
 
         local TextLabel = Library:CreateLabel({
-            FontColor = Color or nil;
             Size = UDim2.new(1, -4, 0, 15);
             TextSize = 14;
             Text = Text;
             TextXAlignment = Enum.TextXAlignment.Left;
             ZIndex = 5;
             Parent = Container;
-        });
+        }, nil, Color);
 
         Library:Create('UIListLayout', {
             Padding = UDim.new(0, 4);
