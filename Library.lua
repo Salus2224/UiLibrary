@@ -898,7 +898,7 @@ do
         });
     end;
 
-    function Funcs:AddLabel(Text, Color)
+    function Funcs:AddLabel(Text, Color, Wrapped) -- stole some wally code here
         local Label = {};
 
         local Groupbox = self;
@@ -908,22 +908,42 @@ do
             Size = UDim2.new(1, -4, 0, 15);
             TextSize = 14;
             Text = Text;
+            TextWrapped = Wrapped;
             TextXAlignment = Enum.TextXAlignment.Left;
             ZIndex = 5;
             Parent = Container;
         }, nil, Color);
-
-        Library:Create('UIListLayout', {
-            Padding = UDim.new(0, 4);
-            FillDirection = Enum.FillDirection.Horizontal;
-            HorizontalAlignment = Enum.HorizontalAlignment.Right;
-            SortOrder = Enum.SortOrder.LayoutOrder;
-            Parent = TextLabel;
-        });
-
+        
+        if Wrapped then
+            local height = select(2, Library:GetTextBounds(Text, Enum.Font.Code, 14, Vector2.new(TextLabel.AbsoluteSize.X, math.huge)));
+            TextLabel.Size = UDim2.new(1, -4, 0, height);
+        else
+            Library:Create('UIListLayout', {
+                Padding = UDim.new(0, 4);
+                FillDirection = Enum.FillDirection.Horizontal;
+                HorizontalAlignment = Enum.HorizontalAlignment.Right;
+                SortOrder = Enum.SortOrder.LayoutOrder;
+                Parent = TextLabel;
+            });
+        end
+        
         Label.TextLabel = TextLabel;
         Label.Container = Container;
-        setmetatable(Label, BaseAddons);
+        
+        function Label:SetText(Text)
+            TextLabel.Text = Text
+            
+            if Wrapped then
+                local height = select(2, Library:GetTextBounds(Text, Enum.Font.Code, 14, Vector2.new(TextLabel.AbsoluteSize.X, math.huge)));
+                TextLabel.Size = UDim2.new(1, -4, 0, height);
+            end
+            
+            Groupbox:Resize()
+        end
+        
+        if (not Wrapped) then
+            setmetatable(Label, BaseAddons);
+        end
 
         Groupbox:AddBlank(5);
         Groupbox:Resize();
