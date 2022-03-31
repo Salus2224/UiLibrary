@@ -87,7 +87,7 @@ function Library:CreateLabel(Properties, IsHud)
     local _Instance = Library:Create('TextLabel', {
         BackgroundTransparency = 1;
         Font = Enum.Font.Code;
-        TextColor3 = Library.FontColor;
+        TextColor3 = Properties.FontColor or Library.FontColor;
         TextSize = 16;
         TextStrokeTransparency = 0;
     });
@@ -898,13 +898,14 @@ do
         });
     end;
 
-    function Funcs:AddLabel(Text)
+    function Funcs:AddLabel(Text, Color)
         local Label = {};
 
         local Groupbox = self;
         local Container = Groupbox.Container;
 
         local TextLabel = Library:CreateLabel({
+            FontColor = Color or nil;
             Size = UDim2.new(1, -4, 0, 15);
             TextSize = 14;
             Text = Text;
