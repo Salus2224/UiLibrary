@@ -2204,7 +2204,7 @@ function Library:CreateWindow(WindowTitle, size)
             Blocker.BackgroundTransparency = 0;
             TabButton.BackgroundColor3 = Library.MainColor;
             TabFrame.Visible = true;
-            
+            --[[
             if first then
                 first = false;
                 local con
@@ -2215,7 +2215,7 @@ function Library:CreateWindow(WindowTitle, size)
                         return;
                     end;
                 end);
-            end;
+            end;]]
         end;
 
         function Tab:HideTab()
