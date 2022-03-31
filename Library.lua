@@ -898,7 +898,7 @@ do
         });
     end;
 
-    function Funcs:AddLabel(Text, Color)
+    function Funcs:AddLabel(Text, Color, Wrapped)
         local Label = {};
 
         local Groupbox = self;
@@ -908,6 +908,7 @@ do
             Size = UDim2.new(1, -4, 0, 15);
             TextSize = 14;
             Text = Text;
+            TextWrapped = Wrapped;
             TextXAlignment = Enum.TextXAlignment.Left;
             ZIndex = 5;
             Parent = Container;
